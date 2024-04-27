@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@5.17.0"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "layer": [{"data": {"url": "https://cdn.jsdelivr.net/npm/vega-datasets@v1.29.0/data/us-10m.json", "format": {"feature": "states", "type": "topojson"}}, "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}, "projection": {"type": "albersUsa"}, "title": "Barry's Travels"}, {"data": {"name": "data-58842d8dc10495b0ff05bdd4ea87e1ce"}, "mark": {"type": "circle", "color": "red", "size": 100}, "encoding": {"latitude": {"field": "lats", "type": "quantitative"}, "longitude": {"field": "longs", "type": "quantitative"}, "tooltip": {"field": "city_name", "type": "nominal"}}}, {"data": {"name": "data-58842d8dc10495b0ff05bdd4ea87e1ce"}, "mark": {"type": "line", "color": "blue"}, "encoding": {"latitude": {"field": "lats", "type": "quantitative"}, "longitude": {"field": "longs", "type": "quantitative"}, "order": {"field": "index", "type": "ordinal"}}}, {"data": {"name": "data-12c7762fb253eeb09d77e5bed8fa7e7e"}, "mark": {"type": "line", "color": "blue"}, "encoding": {"latitude": {"field": "latitude", "type": "quantitative"}, "longitude": {"field": "longitude", "type": "quantitative"}}}, {"data": {"name": "data-58842d8dc10495b0ff05bdd4ea87e1ce"}, "mark": {"type": "text", "align": "left", "baseline": "bottom", "dx": 7}, "encoding": {"latitude": {"field": "lats", "type": "quantitative"}, "longitude": {"field": "longs", "type": "quantitative"}, "text": {"field": "city_name", "type": "nominal"}}}], "$schema": "https://vega.github.io/schema/vega-lite/v5.17.0.json", "datasets": {"data-58842d8dc10495b0ff05bdd4ea87e1ce": [{"city_name": "Folcroft", "lats": 39.8891, "longs": -75.277}, {"city_name": "Ferndale", "lats": 42.4592, "longs": -83.1313}, {"city_name": "Michigan Center", "lats": 42.2268, "longs": -84.323}, {"city_name": "Steele", "lats": 46.8568, "longs": -99.9181}, {"city_name": "Folcroft", "lats": 39.8891, "longs": -75.277}], "data-12c7762fb253eeb09d77e5bed8fa7e7e": [{"city_name": "Steele", "lats": 46.8568, "longs": -99.9181}, {"city_name": "Folcroft", "lats": 39.8891, "longs": -75.277}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>
